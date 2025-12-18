@@ -1,101 +1,78 @@
 package org.example
 
 
+
 fun main() {
 
-    val car1: Car = Car(
-        "Green",
-        250,
-        "Audi",
-        90,
-    )
-    val car2 = Car("Red",199,"Skoda", 50)
-    val car3 = Car("Blue", 239,"BMW",120)
-    val car4 = Car(color = "Green", power = 199, brand = "Reno", tankVolume = 100)
-    val car5 = Car(color = "Red", power = 239, brand = "Skoda", tankVolume = 125)
-    val car6 = Car(color = "Black", power = 222, brand = "Porsche", tankVolume = 666)
+    val car1: Vehicle = Vehicle(color = "Green", power = 250, brand = "Audi", tankVolume = 90, name = "Kakan")
+    val car2 = Vehicle(color = "Red", power = 199, brand = "Skoda", tankVolume = 50, name = "Babuin")
+    val car3 = Vehicle(color = "Blue", power = 239, brand = "BMW", tankVolume = 120, name = "Rotan")
+    val car4 = Vehicle(color = "Green", power = 199, brand = "Reno", tankVolume = 100, name = "Narotan")
+    val car5 = Vehicle(color = "Red", power = 239, brand = "Skoda", tankVolume = 125, name = "Vrotan")
+    val car6 = Vehicle(color = "Black", power = 222, brand = "Porsche", tankVolume = 666, name = "Macan")
 
-    val fuel92 = Fuel(92, "Fuel")
-    val fuel95 = Fuel(95,"Fuel")
-    val fuel100 = Fuel(100,"Fuel")
-    val diesel = Diesel( "Diesel")
+    val fuel92 = Fuel(on = 92, type = "Fuel", price = 50)
+    val fuel95 = Fuel(on = 95, type = "Fuel", price = 65)
+    val fuel100 = Fuel(on = 100, type = "Fuel", price = 90)
+    val diesel = Diesel(type = "Diesel")
 
-    val brat1 = Brat("Kakan")
-    val brat2 = Brat("Babuin")
-    val brat3 = Brat("Rotan")
-    val brat4 = Brat("Macan")
+//    fun refuel(whichCar: Car, whichFuel: Fuel, brotherName: Brat) {
+//        val zapravka = 100
+//        val bratskoeSerdce = "Macan"
+//        if (zapravka >= whichCar.tankVolume || bratskoeSerdce == brotherName.name)
+//            println("Priehala mashina ${brand} ee need refuel ${whichFuel.on} ${whichFuel.type}, a how much tebe zalit' brat ${brotherName} BROTHER? Mne do Full brat ${whichCar.tankVolume}") // смысл в том что брат Макан даже при условии что заправка 100 все равно заправит себе полный бак
+//        else {
+//            println("huy") // а его ебучий брат Какан так не может, ну конечно он же Какан
+//        }
+//    }
+    car1.refuel(fuel100, skoka = 80)
+    car2.refuel(fuel100, skoka = 120)
+    car3.refuel(fuel95, skoka = 150)
+    car4.refuel(fuel92, skoka = 10)
+    car5.refuel(fuel100, skoka = 15)
+    car6.refuel(fuel100, skoka = 999)
 
-    val zaprvka = 100
-//    val squirt: Animal = Animal(
-//        weight = 1,
-//        height = 10,
-//        width = 1,
-//        name = "pidr",)
-//
-//    val wolf = Animal(weight = 123, height = 22, width = 2, name = "gay")
-//    val croc = Animal(weight = 666, height = 55, width = 8,  name = "slayer")
-//
-//    val weightSquirt = squirt.weight //вес белки
-//    println(weightSquirt)
-//    val heightSquirt = squirt.height //высота белка
-//    println(heightSquirt)
-//    val animalWeight = squirt.weight + wolf.weight	+ croc.weight
-//    println(animalWeight)
-//
-//    val animals: List<Animal> = listOf(squirt,wolf,croc)
-//    println(animals[2].name)
-//
-//    val meat = Eat(weight = 10, smell = "Blood", name = "meat")
-//    val koko = Trap("maks",  "pavel", "triger")
-//    croc.square()
-//    squirt.square()
-//    croc.perdit(meat ,koko, wolf)
-    car1.refuel(car1, fuel95, brat3)
-    car2.refuel(car2, fuel92 , brat2)
-    car3.refuel(car3, fuel100, brat1)
-    car4.refuel(car4, fuel92, brat3)
-    car5.refuel(car5, fuel95, brat1)
-    car6.refuel(car6, fuel100, brat4)
-}
-class Car (
+
+} // Добавить функцию IF, if statment in Kotlin!!
+
+class Vehicle(
     val color: String,
     val power: Int,
     val brand: String,
     val tankVolume: Int,
-)
-
-{
+    val name: String,
+) {
     fun introduce() {
         println("My color is $color")
         println("My power is $power")
         println("My brand is $brand")
+        println("My tankVolume is $tankVolume")
+
     }
-//    fun square(): Int {
-//        return height * width
-//    }
-//    fun perdit(eda: Eat, dick: Trap, curve: Animal) { // fun - объявление функции perdit - название функции eat - аргумент Eat - тип
-//        println("I have $brand ate ${eda.name} and smells like ${eda.smell} i think its ${dick.gay} but i need to know ${curve.square()}")
-//    }
-    fun refuel(whichCar: Car, whichFuel: Fuel, brotherName: Brat){
-        val zapravka = 100
-        val bratskoeSerdce = "Macan"
-        if (zapravka >= whichCar.tankVolume || bratskoeSerdce == brotherName.name){
-        println("Priehala mashina ${whichCar.brand} ee need refuel ${whichFuel.on} ${whichFuel.type}, a how much tebe zalit' brat ${brotherName.name} BROTHER? Mne do Full brat ${whichCar.tankVolume}")
-    } // смысл в том что брат Макан даже при условии что заправка 100 все равно заправит себе полный бак
-    else {
-        println("huy") // а его ебучий брат Какан так не может, ну конечно он же Какан
+
+    fun refuel(zapravka: Fuel , skoka: Int) {
+        val Jet = "Macan"
+        if (skoka <= tankVolume ||  Jet == name) // смысл в том что брат Макан даже при условии что заправка 100 все равно заправит себе полный бак
+        println("Ia refuel ${brand} this fuel ${zapravka.on} i zaplatil ${skoka* zapravka.price} Mao, thanks for refuel on our gas station brother, JET USHEL JET")
+        else {
+            println("Ti dolbaeb razlil benz, budesh teper platit sverhu za razlitoe ${(skoka-tankVolume)*zapravka.price}, i davay otsuda JAB USHEL JAB") // а его ебучий брат Какан так не может, ну конечно он же Какан
+        }
     }
 
 
-    }
-} // Добавить функцию IF, if statment in Kotlin!!
-class Fuel( // название типа/класса
+}
+
+
+
+
+class Fuel(
+    // название типа/класса
     val on: Int,
     val type: String,
+    val price: Int,
 )
-class Diesel( // название типа/класса
+
+class Diesel(
+    // название типа/класса
     val type: String,
-)
-class Brat(
-    val name: String,
 )
