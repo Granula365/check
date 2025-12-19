@@ -62,6 +62,9 @@ class Vehicle(
 
 }
 
+
+
+
 class Fuel(
     // название типа/класса
     val on: Int,

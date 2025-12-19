@@ -1,14 +1,48 @@
 
 fun main() {
 
-    val car1: Vehicle =
-        Vehicle(color = "Green", power = 250, brand = "Audi", tankVolume = 90, name = "Kakan", typeICE = FuelType.Petrol)
-    val car2 = Vehicle(color = "Red", power = 199, brand = "Skoda", tankVolume = 50, name = "Babuin", typeICE = FuelType.Petrol)
-    val car3 = Vehicle(color = "Blue", power = 239, brand = "BMW", tankVolume = 120, name = "Rotan", typeICE = FuelType.Petrol)
-    val car4 = Vehicle(color = "Green", power = 199, brand = "Reno", tankVolume = 100, name = "Narotan", typeICE = FuelType.Diesel)
-    val car5 = Vehicle(color = "Red", power = 239, brand = "Skoda", tankVolume = 125, name = "Vrotan", typeICE = FuelType.Diesel)
-    val car6 = Vehicle(color = "Black", power = 222, brand = "Porsche", tankVolume = 666, name = "Macan", typeICE = FuelType.Electro)
-
+    val car1: Vehicle = Vehicle(
+        color = "Green", power = 250, brand = "Audi", tankVolume = 90, name = "Kakan", typeICE = FuelType.Petrol
+    )
+    val car2 = Vehicle(
+        color = "Red", power = 199, brand = "Skoda", tankVolume = 50, name = "Babuin", typeICE = FuelType.Petrol
+    )
+    val car3 =
+        Vehicle(color = "Blue", power = 239, brand = "BMW", tankVolume = 120, name = "Rotan", typeICE = FuelType.Petrol)
+    val car4 = Vehicle(
+        color = "Green", power = 199, brand = "Reno", tankVolume = 100, name = "Narotan", typeICE = FuelType.Diesel
+    )
+    val car5 = Vehicle(
+        color = "Red", power = 239, brand = "Skoda", tankVolume = 125, name = "Vrotan", typeICE = FuelType.Diesel
+    )
+    val car6 = Vehicle(
+        color = "Black", power = 222, brand = "Porsche", tankVolume = 666, name = "Macan", typeICE = FuelType.Electro
+    )
+    val Fuel92 = Fuel(
+        on = 92,
+        type = FuelType.Petrol,
+        price = 60
+    )
+    val Fuel95= Fuel(
+        on = 95,
+        type = FuelType.Petrol,
+        price = 67
+    )
+    val Fuel100= Fuel(
+        on = 100,
+        type = FuelType.Petrol,
+        price = 90
+    )
+    val Diesel= Fuel(
+        on = 0,
+        type = FuelType.Diesel,
+        price = 80
+    )
+    val Electro= Fuel(
+        on = 0,
+        type = FuelType.Electro,
+        price = 0 // субсидии хули
+    )
 
 //    fun refuel(whichCar: Car, whichFuel: Fuel, brotherName: Brat) {
 //        val zapravka = 100
@@ -19,12 +53,12 @@ fun main() {
 //            println("huy") // а его ебучий брат Какан так не может, ну конечно он же Какан
 //        }
 //    }
-    car1.refuel(Fuel.Fuel92, skoka = 80)
-    car2.refuel(Fuel.Fuel95, skoka = 120)
-    car3.refuel(Fuel.Fuel100, skoka = 150)
-    car4.refuel(Fuel.Fuel92, skoka = 10)
-    car5.refuel(Fuel.Diesel, skoka = 15)
-    car6.refuel(Fuel.Electro, skoka = 999)
+    car1.refuel(Fuel92, skoka = 80)
+    car2.refuel(Fuel95, skoka = 120)
+    car3.refuel(Fuel100, skoka = 150)
+    car4.refuel(Fuel92, skoka = 10)
+    car5.refuel(Diesel, skoka = 15)
+    car6.refuel(Electro, skoka = 999)
 
 
 } // Добавить функцию IF, if statment in Kotlin!!
@@ -46,43 +80,30 @@ class Vehicle(
     }
 
     fun refuel(zapravka: Fuel, skoka: Int) {
+        println("111") // нада потом сделать чтобы он выводил номер машины car1 car2 car3, разобраться как это сдедать
         val Jet = "Macan"
-        if (skoka <= tankVolume || Jet == name) // смысл в том что брат Макан даже при условии что заправка 100 все равно заправит себе полный бак
-            println("Ia refuel ${brand} this fuel ${zapravka.on} i zaplatil ${skoka * zapravka.price} Mao, thanks for refuel on our gas station brother, JET USHEL JET")
-        else if ( typeICE == zapravka.type) {
-            println("Ti dolbaeb razlil benz, budesh teper platit sverhu za razlitoe ${(skoka - tankVolume) * zapravka.price}, i davay otsuda JAB USHEL JAB") // а его ебучий брат Какан так не может, ну конечно он же Какан
-        }
-        else {
-
+        if ((skoka <= tankVolume || Jet == name) && typeICE == zapravka.type) // смысл в том что брат Макан даже при условии что заправка 100 все равно заправит себе полный бак
+        {
+            println("Ia refuel ${brand} this fuel ${zapravka.type} i zaplatil ${skoka * zapravka.price} Mao, thanks for refuel on our gas station brother, JET USHEL JET")
+        } else if (skoka >= tankVolume && typeICE == zapravka.type) {
+            println("Ti dolbaeb razlil benz ${(skoka - tankVolume)} litrov, budesh teper platit sverhu za razlitoe ${(skoka - tankVolume) * zapravka.price}, i davay otsuda JAB USHEL JAB") // а его ебучий брат Какан так не может, ну конечно он же Какан
+        } else if (typeICE != zapravka.type) {
+            println("Idi nahuy ti svoe dviglo videl 4ert zhi est")
+        } else {
+            println("Prosto idi nahuy")
         }
     }
-
-//    fun pricePerLiter(fuel: Fuel): Int =
-//        when (fuel) {
-//            Fuel.Fuel92     -> 60
-//            Fuel.Fuel95     -> 67
-//            Fuel.Fuel100    -> 90
-//            Fuel.Diesel     -> 80
-//
-//        }
-
 }
-enum class FuelType{
-    Petrol,
-    Diesel,
-    Electro
+
+enum class FuelType {
+    Petrol, Diesel, Electro
 }
-enum class Fuel (
+class Fuel(
     val on: Int,
     val type: FuelType,
     val price: Int
-) {
-    Fuel92(on = 92,type = FuelType.Petrol, price = 60),
-    Fuel95(on = 95,type = FuelType.Petrol, price = 67),
-    Fuel100(on = 100,type = FuelType.Petrol, price = 90),
-    Diesel(on = 0,type = FuelType.Diesel, price = 80),
-    Electro(on = 0,type = FuelType.Electro, price = 0) // субсидии хули
-}
+)
+
 
 //class Diesel(
 //    // название типа/класса
